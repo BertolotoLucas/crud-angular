@@ -12,12 +12,12 @@ import { CoursesService } from '../services/courses.service';
 })
 export class CoursesComponent implements OnInit {
 
-  courses?: Course[];
+  courses: Course[] = [];
   selected?: Course;
   currentIndex: number = -1;
   name: string = '';
   category: string = '';
-  displayedColumns = ['name','category'];
+  displayedColumns = ['name','category','actions'];
 
   constructor(private courseService: CoursesService, private route: ActivatedRoute) {}
 
@@ -29,8 +29,8 @@ export class CoursesComponent implements OnInit {
 
   getCourses(): void {
     this.courseService.list()
-      .subscribe( course => {
-        this.courses = course;
+      .subscribe( courses => {
+        this.courses = courses;
       },
       error => {
         console.error(error);
